@@ -23,5 +23,5 @@ x %= y; //x = resto da divisão inteira de x por y
 console.log("x=", x, "| y =", y);
 
 x = 13;
-x %= y; //x = resto da divisão inteira de x por y
+x %= y;
 console.log("x=", x, "| y =", y);
