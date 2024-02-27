@@ -40,3 +40,30 @@ console.table(dinos);
 
 dinos.splice(1, 1);
 console.table(dinos);
+
+console.log("-----Continuação da aula-----");
+
+var dinos = [
+  "Tricerátops",
+  "Tiranossauro Rex",
+  "Estegossauro",
+  "Anquilossauro",
+  "Brontossauro",
+  "Ictiossauro",
+  "Pterodáctilo",
+  "Espinossauro",
+];
+
+console.table(dinos);
+
+var elementoProcurado = "Brontossauro";
+var posicao = dinos.indexOf(elementoProcurado);
+console.log("O " + elementoProcurado + " está no índice " + posicao);
+
+var elementoProcurado = "Pterodáctilo";
+var posicao = dinos.indexOf(elementoProcurado);
+console.log("O " + elementoProcurado + " está no índice " + posicao);
+
+var elementoProcurado = "Tricerátops";
+var posicao = dinos.indexOf(elementoProcurado);
+console.log("O " + elementoProcurado + " está no índice " + posicao);
