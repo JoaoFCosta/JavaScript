@@ -13,62 +13,82 @@
 //   )}) em ${ano} anos!`
 // );
 
-var tabuleiro = [
+// Estrutura do Tabuleiro
+const tabuleiro = [
   [" ", " ", " "],
   [" ", " ", " "],
   [" ", " ", " "],
 ];
 
-var jogadorX = "X";
-var jogadorO = "O";
+let jogadorAtual = "X";
 
 function jogar(jogador) {
   let linha, coluna;
+
   do {
     linha = Math.floor(Math.random() * 3);
     coluna = Math.floor(Math.random() * 3);
   } while (tabuleiro[linha][coluna] !== " ");
 
   tabuleiro[linha][coluna] = jogador;
+  jogadorAtual = jogadorAtual === "X" ? "O" : "X";
 }
-for (let i = 0; i < 9; i++) {
-  if (i % 2 == 0) {
-    jogar(jogadorO);
-  } else {
-    jogar(jogadorX);
-  }
-}
-console.table(tabuleiro);
 
-function detectarVencedor() {
+function verificaVencedor() {
   for (let i = 0; i < 3; i++) {
     if (
-      tabuleiro[i][0] !== " " &&
-      tabuleiro[i][0] === tabuleiro[i][1] &&
-      tabuleiro[i][1] === tabuleiro[i][2]
-    ) {
-      return true; // Retorna uma linha completa
-    }
-    if (
-      tabuleiro[0][i] !== " " &&
+      //Verifica coluna
       tabuleiro[0][i] === tabuleiro[1][i] &&
-      tabuleiro[1][i] === tabuleiro[2][i]
+      tabuleiro[1][i] === tabuleiro[2][i] &&
+      tabuleiro[1][i] !== " "
     ) {
-      return true; // Retorna uma coluna completa
-    }
-    if (
-      tabuleiro[0][0] !== " " &&
-      tabuleiro[0][0] === tabuleiro[1][1] &&
-      tabuleiro[1][1] === tabuleiro[2][2]
+      console.log(`O jogador ${tabuleiro[1][i]} ganhou`);
+      return tabuleiro[1][i];
+    } else if (
+      //Verifica linha
+      tabuleiro[i][0] === tabuleiro[i][1] &&
+      tabuleiro[i][1] === tabuleiro[i][2] &&
+      tabuleiro[i][1] !== " "
     ) {
-      return true; // Retorna a diagonal principal 
+      console.log(`O jogador ${tabuleiro[i][1]} ganhou`);
+      return tabuleiro[i][1];
     }
-    if (
-        tabuleiro[2][2] !== " " &&
-        tabuleiro[2][2] === tabuleiro[1][1] &&
-        tabuleiro[1][1] === tabuleiro[0][0]
-      ) {
-        return true; // Retorna a diagonal secundaria
-      }
+  }
+  if (
+    // Vefifica diagonal
+    tabuleiro[0][0] === tabuleiro[1][1] &&
+    tabuleiro[1][1] === tabuleiro[2][2] &&
+    tabuleiro[1][1] !== " "
+  ) {
+    console.log(`O jogador ${tabuleiro[1][1]} ganhou`);
+    return tabuleiro[1][1];
+  } else if (
+    // Vefifica diagonal
+    tabuleiro[0][2] === tabuleiro[1][1] &&
+    tabuleiro[1][1] === tabuleiro[2][0] &&
+    tabuleiro[1][1] !== " "
+  ) {
+    console.log(`O jogador ${tabuleiro[1][1]} ganhou`);
+    return tabuleiro[1][1];
+  }
+
+  if (!tabuleiro.some((event) => event.includes(" "))) {
+    console.log("O jogo empatou");
+    return "Empate";
+  }
+  return "";
+}
+
+let vencedor = "";
+
+while (!vencedor) {
+  jogar(jogadorAtual);
+  console.table(tabuleiro);
+  vencedor = verificaVencedor();
+
+  if (!vencedor) {
+    jogar(jogadorAtual);
+    console.table(tabuleiro);
+    vencedor = verificaVencedor();
   }
 }
