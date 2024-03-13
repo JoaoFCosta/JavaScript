@@ -48,3 +48,40 @@ chocolate.pedido();
 melancia.pedido();
 morango.setPreco(10.51);
 morango.pedido();
+
+// Strings
+
+console.log("-----------------------");
+
+// 01
+var texto1 = "Olá";
+var texto2 = "olá";
+function compararTextos(texto1, texto2) {
+  if (texto1.toLowerCase() === texto2.toLowerCase()) console.log("São iguais");
+  else console.log("São diferentes");
+}
+
+compararTextos(texto1, texto2);
+
+console.log("-----------------------");
+// 02
+function extrairNumeros(str) {
+  const regex = /\d+/g;
+  return str.match(regex);
+}
+
+const string = "Eu gosto de 1, talvez 2";
+const numeros = extrairNumeros(string);
+console.log(numeros)
+
+console.log("-----------------------");
+// 03
+
+function inverterFrase(frase) {
+  const palavras = frase.split(" ");
+  return palavras.reverse().join(" ");
+}
+
+const frase = "Este é um exemplo de frase invertida"
+const fraseInvertida = inverterFrase(frase);
+console.log(fraseInvertida)
